@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venkata Kesav Venna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111010;
+    --paper: #f5f2ed;
+    --accent: #c0392b;
+    --muted: #7a7570;
+    --rule: #d8d3cc;
+    --card: #fff;
+    --tag-bg: #e9e4dd;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── Layout ── */
+  .wrapper { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+
+  /* ── Header ── */
+  header {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .header-inner { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; }
+  .name {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .name span { color: var(--accent); }
+  .tagline {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+  .links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .links a:hover { color: var(--accent); }
+  .links a svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    z-index: 100;
+    padding: 0;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  nav a {
+    display: block;
+    padding: 14px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  nav a:hover, nav a.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ── Sections ── */
+  section { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: none; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+
+  /* ── About ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 260px; gap: 48px; align-items: start; }
+  .about-text p { margin-bottom: 16px; color: #333; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { font-weight: 500; color: var(--ink); }
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .info-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .info-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .info-val { font-size: 13.5px; color: var(--ink); font-weight: 500; }
+  .info-val a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .info-val a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+
+  /* ── News ── */
+  .news-list { display: flex; flex-direction: column; gap: 0; }
+  .news-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .news-text { font-size: 14px; color: #333; line-height: 1.55; }
+  .news-text a { color: var(--accent); text-decoration: none; }
+  .news-text a:hover { text-decoration: underline; }
+  .badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  .badge-cvpr { background: #fdecea; color: #c0392b; }
+  .badge-eccv { background: #e8f4fd; color: #1a6fa3; }
+  .badge-icdar { background: #edfaed; color: #1e7a1e; }
+  .badge-wacv { background: #f3eeff; color: #5b3ea0; }
+  .badge-new { background: #fff8e1; color: #8a6200; }
+
+  /* ── Publications ── */
+  .pub-list { display: flex; flex-direction: column; gap: 28px; }
+  .pub {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 20px;
+  }
+  .pub-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 3px;
+    text-align: right;
+  }
+  .pub-body {}
+  .pub-title {
+    font-family: 'Lora', serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .pub-title a { color: var(--ink); text-decoration: none; }
+  .pub-title a:hover { color: var(--accent); }
+  .pub-venue {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .pub-authors {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .pub-authors .me { color: var(--ink); font-weight: 500; text-decoration: underline; text-decoration-color: var(--accent); }
+  .pub-desc {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .pub-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pub-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.15s;
+  }
+  .pub-link:hover { border-color: var(--accent); color: var(--accent); background: #fdecea22; }
+  .pub-divider { height: 1px; background: var(--rule); margin: 4px 0 0 64px; }
+
+  /* ── Projects ── */
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .proj-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 22px;
+    transition: border-color 0.15s;
+  }
+  .proj-card:hover { border-color: #aaa; }
+  .proj-name {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .proj-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .proj-desc { font-size: 13.5px; color: #444; line-height: 1.6; margin-bottom: 12px; }
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin: 2px 2px 0 0;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Experience ── */
+  .exp-list { display: flex; flex-direction: column; gap: 32px; }
+  .exp { display: grid; grid-template-columns: 120px 1fr; gap: 24px; }
+  .exp-dates {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 3px;
+    line-height: 1.5;
+  }
+  .exp-org { font-weight: 500; font-size: 15px; margin-bottom: 2px; }
+  .exp-role { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 10px; }
+  .exp-body { font-size: 13.5px; color: #444; line-height: 1.6; }
+  .exp-body ul { padding-left: 18px; }
+  .exp-body li { margin-bottom: 6px; }
+  .exp-body a { color: var(--accent); text-decoration: none; }
+  .exp-body a:hover { text-decoration: underline; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 32px 0;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 680px) {
+    .header-inner { grid-template-columns: 1fr; }
+    .links { flex-direction: row; align-items: flex-start; flex-wrap: wrap; }
+    .about-grid { grid-template-columns: 1fr; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .exp { grid-template-columns: 80px 1fr; gap: 14px; }
+    .pub { grid-template-columns: 36px 1fr; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="wrapper">
+    <div class="header-inner">
+      <div>
+        <div class="name">Venkata Kesav<br><span>Venna</span></div>
+        <div class="tagline">Research Engineer · Vision–Language Systems · BharatGen · IIIT Hyderabad</div>
+      </div>
+      <div class="links">
+        <a href="mailto:venkatakesavvenna@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          venkatakesavvenna@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/venkatakesavvenna" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="8" y1="11" x2="8" y2="17"/><line x1="8" y1="7" x2="8" y2="8"/><path d="M12 11v6M12 14a3 3 0 016 0v3"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/venkatakesavvenna" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="Resume___Latest__1_.pdf" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          CV / Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="wrapper">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="wrapper">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a Research Engineer at <strong>BharatGen</strong>, where I co-lead the vision effort. My work sits at the intersection of <strong>vision–language models, document understanding, and ML systems</strong>.</p>
+        <p>I built <strong>Patram-7B-Instruct</strong> — a 7B VLM trained from scratch on diverse Indian documents spanning 23 languages, scaling to 512 GPUs via a modular training framework. I am the first author of <strong>M3Grounder</strong> (CVPR 2026), a pixel-level grounded document QA system, and have multiple additional papers accepted or under review at ECCV and ICDAR 2026.</p>
+        <p>Alongside research, I am actively learning the systems side: I am building CUDA kernels from scratch (SGEMM, Flash Attention) and re-implementing core ideas from SGLang to deeply understand LLM inference scheduling, KV-cache management, and serving.</p>
+        <p>I completed my B.Tech in Computer Science &amp; Engineering at <strong>IIIT Hyderabad</strong> (2021–2025, 8.88 CGPA).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-row">
+          <div class="info-label">Status</div>
+          <div class="info-val">Research Engineer, BharatGen</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Education</div>
+          <div class="info-val">B.Tech CSE, IIIT Hyderabad<br><span style="font-weight:400;font-size:12.5px;color:var(--muted)">2021 – 2025 · 8.88/10</span></div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Research areas</div>
+          <div class="info-val" style="font-weight:400;line-height:1.6;font-size:13px;">Document VLMs · Grounded QA · Layout Understanding · ML Systems · CUDA Kernels</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Location</div>
+          <div class="info-val">Hyderabad, India</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Email</div>
+          <div class="info-val"><a href="mailto:venkatakesavvenna@gmail.com">venkatakesavvenna@gmail.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWS ── -->
+<section id="news">
+  <div class="wrapper">
+    <div class="section-label">News</div>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">Jun 2026</div>
+        <div class="news-text"><span class="badge badge-icdar">ICDAR 2026</span> <strong>REPLICA</strong> (agentic PDF→HTML reconstruction) and <strong>Patram-Bench</strong> (multilingual Indian doc benchmark) both accepted.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Feb 2026</div>
+        <div class="news-text"><span class="badge badge-cvpr">CVPR 2026</span> <strong>M3Grounder</strong> accepted — mask-based multi-span, multi-granular grounding for document QA. <a href="https://m3grounder.github.io/">Project page ↗</a></div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2026</div>
+        <div class="news-text"><span class="badge badge-eccv">ECCV 2026</span> <strong>DocLayout-VL</strong> and <strong>DoCoG</strong> currently under review.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2026</div>
+        <div class="news-text"><span class="badge badge-new">Systems</span> Started a public CUDA kernel series — SGEMM, tiled shared-memory, Flash Attention from scratch. <a href="https://github.com/venkatakesavvenna">GitHub ↗</a></div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">May 2024</div>
+        <div class="news-text">Joined <strong>BharatGen</strong> as a Research Engineer to lead the vision track. Began training Patram-7B-Instruct from scratch on Indian documents.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Jan 2024</div>
+        <div class="news-text"><span class="badge badge-wacv">WACV 2024</span> <strong>MAdVerse</strong> accepted — multilingual hierarchical ad dataset and classification pipeline.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PUBLICATIONS ── -->
+<section id="publications">
+  <div class="wrapper">
+    <div class="section-label">Publications</div>
+    <div class="pub-list">
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <div class="pub-venue"><span class="badge badge-cvpr">CVPR 2026</span> CORE A* · 1st Author</div>
+          <div class="pub-title"><a href="https://m3grounder.github.io/">M3Grounder: Mask-Based Multi-Span and Multi-Granular Grounding for Document QA</a></div>
+          <div class="pub-authors"><span class="me">Venkata Kesav Venna</span>, Sai Madhusudan Gunda, Jyothi Swaroopa Jinka, Hrithik Sagar Rachakonda, Anirudh Srinivasan, Ravi Kiran Sarvadevabhatla</div>
+          <div class="pub-desc">Novel hybrid VLM–segmentation architecture that grounds answer spans at phrase, line, and block granularities via pixel-level masks. Introduces a bleed-suppression loss and multi-span grounding, achieving state-of-the-art on 4 benchmarks (F1g: 66.4 → 73.3 on DOGR-Bench at 8B scale). Released GroundingDocQA (200K docs, 2M QA pairs) and GroundingDocQA-Bench (2.5K human-verified).</div>
+          <div class="pub-links">
+            <a class="pub-link" href="https://m3grounder.github.io/" target="_blank">Project Page</a>
+            <a class="pub-link" href="#" target="_blank">Paper</a>
+            <a class="pub-link" href="#" target="_blank">Dataset</a>
+          </div>
+        </div>
+      </div>
+      <div class="pub-divider"></div>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <div class="pub-venue"><span class="badge badge-eccv">ECCV 2026</span> CORE A* · Under Review · 1st Author</div>
+          <div class="pub-title">DocLayout-VL: Foundational Model for Hierarchical, Open-Set & Promptable Layout Segmentation</div>
+          <div class="pub-authors"><span class="me">Venkata Kesav Venna</span> et al.</div>
+          <div class="pub-desc">Foundation model for document layout understanding reformulated as promptable, open-set, hierarchical segmentation. Achieves 79.4 OS vs 37.2 for Gemini 3 Pro. Introduces a Hierarchical Grounding Contextualizer (HGC) that enforces parent–child–sibling consistency via tree-aware sparse attention. Trained on HOPLay-Docs-80M (2.5M pages, 80M pixel-level masks).</div>
+          <div class="pub-links">
+            <a class="pub-link" href="#" target="_blank">Paper (under review)</a>
+          </div>
+        </div>
+      </div>
+      <div class="pub-divider"></div>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <div class="pub-venue"><span class="badge badge-eccv">ECCV 2026</span> CORE A* · Under Review</div>
+          <div class="pub-title">DoCoG: Mask-Based Multi-Type Grounded Chain-of-Thought for Document QA</div>
+          <div class="pub-authors"><span class="me">Venkata Kesav Venna</span> et al.</div>
+          <div class="pub-desc">Step-wise grounded CoT architecture with a novel Grounding Interaction Module (GIM) for cross-[GND]-token consistency. DPO-based alignment with anchor loss preserves mask fidelity. Achieves 85.8 AQ and 81.9 GQfa vs 84.2 AQ and 11.4 GQfa for Gemini 3 Pro — first use of DPO in grounded DocVQA. Introduces DoCoG-QA (325K docs, 1.5M step-wise QA pairs) and DoCoG-PQA (20K preference pairs).</div>
+          <div class="pub-links">
+            <a class="pub-link" href="#" target="_blank">Paper (under review)</a>
+          </div>
+        </div>
+      </div>
+      <div class="pub-divider"></div>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <div class="pub-venue"><span class="badge badge-icdar">ICDAR 2026</span> CORE A · 1st Author</div>
+          <div class="pub-title">REPLICA: An Agentic Framework for Visually Faithful Document Reconstruction</div>
+          <div class="pub-authors"><span class="me">Venkata Kesav Venna</span> et al.</div>
+          <div class="pub-desc">Agentic PDF-to-HTML pipeline (Segment → Localize → Assemble → Refine) achieving 93% visual fidelity across 15+ languages and 20+ document types. REPLICA with Qwen3-VL-8B achieves a 39% gain over Qwen3-VL-30B despite being 3.75× smaller, outperforming GPT-5 and Gemini 3 Pro. Introduces Fid-HTML and VFDR-Bench (5K expert-annotated documents).</div>
+          <div class="pub-links">
+            <a class="pub-link" href="#" target="_blank">Paper</a>
+          </div>
+        </div>
+      </div>
+      <div class="pub-divider"></div>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <div class="pub-venue"><span class="badge badge-icdar">ICDAR 2026</span> CORE A</div>
+          <div class="pub-title">Patram-Bench: Multi-task, Multi-domain, Multi-lingual Benchmark for Indian Document Understanding</div>
+          <div class="pub-authors"><span class="me">Venkata Kesav Venna</span> et al.</div>
+          <div class="pub-desc">First large-scale multilingual Indic document benchmark: 52K documents, 23 languages, 13 domains, 71 classes, 52 tasks, 2.4M QA annotations across OCR, layout, structured parsing, and multi-hop VQA. Introduces DUCLI and SRS metrics; evaluates 29 VLMs.</div>
+          <div class="pub-links">
+            <a class="pub-link" href="#" target="_blank">Paper</a>
+          </div>
+        </div>
+      </div>
+      <div class="pub-divider"></div>
+
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div class="pub-body">
+          <div class="pub-venue"><span class="badge badge-wacv">WACV 2024</span> CORE A</div>
+          <div class="pub-title">MAdVerse: A Hierarchical Dataset of Multi-Lingual Ads from Diverse Sources and Categories</div>
+          <div class="pub-authors">Venkata Kesav Venna et al.</div>
+          <div class="pub-desc">Hierarchical multilingual advertisement dataset. Built a newspaper ad extraction pipeline using Faster R-CNN and ViT; fine-tuned CNN and transformer classifiers for hierarchical multilingual ad classification.</div>
+          <div class="pub-links">
+            <a class="pub-link" href="#" target="_blank">Paper</a>
+            <a class="pub-link" href="https://github.com/venkatakesavvenna" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="wrapper">
+    <div class="section-label">Projects</div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-name">GPU Kernel Series</div>
+        <div class="proj-meta">CUDA C/C++ · 2026 – Present · Ongoing</div>
+        <div class="proj-desc">9 CUDA kernels built from scratch: vector add → SGEMM progression (naive → coalesced → tiled shared-memory → 1D register-tiled), each benchmarked for warp-level memory access patterns and arithmetic intensity. Implemented naive O(N²) attention and Flash Attention forward pass, fusing score, online softmax, and output accumulation into a single kernel pass — reducing HBM complexity from O(N²) to O(N).</div>
+        <div>
+          <span class="tag">CUDA</span><span class="tag">C++</span><span class="tag">SGEMM</span><span class="tag">Flash Attention</span><span class="tag">GPU Mode</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-name">Mini-SGLang</div>
+        <div class="proj-meta">Python · 2026 · Inference Systems</div>
+        <div class="proj-desc">Re-implementing core ideas of SGLang from scratch to deeply understand LLM inference systems: request scheduling, KV-cache management, continuous batching, and serving. Building incrementally from a single-GPU generation loop toward cache-aware, scheduler-driven inference with measurable systems-level optimization.</div>
+        <div>
+          <span class="tag">Python</span><span class="tag">KV Cache</span><span class="tag">Inference</span><span class="tag">Scheduling</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-name">Patram Training Framework</div>
+        <div class="proj-meta">PyTorch · 2024–Present · Production</div>
+        <div class="proj-desc">Modular VLM training framework scaling to 512 GPUs with plug-and-play vision encoders, projectors, and LLMs. Used to train Patram-7B-Instruct via a custom curriculum on Indian documents spanning 23 languages. <a href="https://huggingface.co/bharatgenai/patram-7b-instruct" target="_blank">Model on HuggingFace ↗</a></div>
+        <div>
+          <span class="tag">PyTorch</span><span class="tag">Distributed</span><span class="tag">VLM</span><span class="tag">512 GPUs</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-name">Hallucination Detection Pipeline</div>
+        <div class="proj-meta">Python · 2024 · Course Project</div>
+        <div class="proj-desc">Full hallucination-detection pipeline for QA using structured triplet generation and RoBERTa-based NLI for factual verification. Evaluated Alpaca-7B, Mistral-7B, and Claude-2 on a focused dataset.</div>
+        <div>
+          <span class="tag">Python</span><span class="tag">NLI</span><span class="tag">RoBERTa</span><span class="tag">Responsible AI</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="wrapper">
+    <div class="section-label">Experience</div>
+    <div class="exp-list">
+
+      <div class="exp">
+        <div class="exp-dates">May 2024<br>– Present</div>
+        <div>
+          <div class="exp-org">BharatGen</div>
+          <div class="exp-role">Research Engineer · Vision Track</div>
+          <div class="exp-body">
+            <ul>
+              <li>Core contributor for <strong>Patram-Core</strong>, a modular VLM training framework scaling to 512 GPUs; trained Patram-7B-Instruct via a custom curriculum on Indian documents in 23 languages. <a href="https://huggingface.co/bharatgenai/patram-7b-instruct" target="_blank">HuggingFace ↗</a></li>
+              <li>Led research on grounded document understanding: <strong>M3Grounder</strong> (CVPR 2026), <strong>REPLICA</strong> and <strong>Patram-Bench</strong> (ICDAR 2026), <strong>DocLayout-VL</strong> and <strong>DoCoG</strong> (ECCV 2026, under review).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="exp-dates">Mar 2023<br>– Mar 2024</div>
+        <div>
+          <div class="exp-org">CVIT, IIIT Hyderabad</div>
+          <div class="exp-role">Research Intern · Advised by Dr. Ravi Kiran (IIIT-H) &amp; Dr. Ganesh Ramakrishnan (IIT Bombay)</div>
+          <div class="exp-body">
+            <ul>
+              <li>Built document understanding pipelines for digitizing India's circular library using vision–language transformer models.</li>
+              <li>Project sponsored by the Government of India under the Document Image Analysis initiative.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="wrapper">
+    Venkata Kesav Venna · venkatakesavvenna@gmail.com · Updated May 2026
+  </div>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
