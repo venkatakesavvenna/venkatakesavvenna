@@ -181,6 +181,7 @@
   .badge-icdar { background: #edfaed; color: #1e7a1e; }
   .badge-wacv { background: #f3eeff; color: #5b3ea0; }
   .badge-new { background: #fff8e1; color: #8a6200; }
+  .badge-systems { background: #e8f5e9; color: #2e7d32; }
 
   /* ── Publications ── */
   .pub-list { display: flex; flex-direction: column; gap: 28px; }
@@ -325,7 +326,7 @@
     <div class="header-inner">
       <div>
         <div class="name">Venkata Kesav<br><span>Venna</span></div>
-        <div class="tagline">Research Engineer · Vision–Language Systems · BharatGen · IIIT Hyderabad</div>
+        <div class="tagline">ML Research Engineer · CVPR/ECCV/ICDAR · Building CUDA Kernels · BharatGen</div>
       </div>
       <div class="links">
         <a href="mailto:venkatakesavvenna@gmail.com">
@@ -374,7 +375,7 @@
       <div class="about-text">
         <p>I am a Research Engineer at <strong>BharatGen</strong>, where I co-lead the vision effort. My work sits at the intersection of <strong>vision–language models, document understanding, and ML systems</strong>.</p>
         <p>I built <strong>Patram-7B-Instruct</strong> — a 7B VLM trained from scratch on diverse Indian documents spanning 23 languages, scaling to 512 GPUs via a modular training framework. I am the first author of <strong>M3Grounder</strong> (CVPR 2026), a pixel-level grounded document QA system, and have multiple additional papers accepted or under review at ECCV and ICDAR 2026.</p>
-        <p>Alongside research, I am actively learning the systems side: I am building CUDA kernels from scratch (SGEMM, Flash Attention) and re-implementing core ideas from SGLang to deeply understand LLM inference scheduling, KV-cache management, and serving.</p>
+        <p>Alongside research, I am actively learning the systems side: I am building CUDA kernels from scratch (SGEMM, Flash Attention) and implementing a minimal inference engine (tiny-infer) to deeply understand LLM inference scheduling, KV-cache management, and optimization. Every day of systems work moves a measurable number.</p>
         <p>I completed my B.Tech in Computer Science &amp; Engineering at <strong>IIIT Hyderabad</strong> (2021–2025, 8.88 CGPA).</p>
       </div>
       <div class="info-card">
@@ -388,7 +389,7 @@
         </div>
         <div class="info-row">
           <div class="info-label">Research areas</div>
-          <div class="info-val" style="font-weight:400;line-height:1.6;font-size:13px;">Document VLMs · Grounded QA · Layout Understanding · ML Systems · CUDA Kernels</div>
+          <div class="info-val" style="font-weight:400;line-height:1.6;font-size:13px;">Document VLMs · Grounded QA · Layout Understanding · ML Systems · GPU Kernels</div>
         </div>
         <div class="info-row">
           <div class="info-label">Location</div>
@@ -422,11 +423,11 @@
       </div>
       <div class="news-item">
         <div class="news-date">2026</div>
-        <div class="news-text"><span class="badge badge-new">Systems</span> Started a public CUDA kernel series — SGEMM, tiled shared-memory, Flash Attention from scratch. <a href="https://github.com/venkatakesavvenna">GitHub ↗</a></div>
+        <div class="news-text"><span class="badge badge-systems">Systems</span> Started public CUDA kernel series & tiny-infer: 60-day challenge building a minimal LLM inference engine from scratch (weight loading → Flash Attention → paged KV cache → speculative decoding → INT8 quantization). <a href="https://github.com/venkatakesavvenna/tiny-infer">GitHub ↗</a></div>
       </div>
       <div class="news-item">
         <div class="news-date">May 2024</div>
-        <div class="news-text">Joined <strong>BharatGen</strong> as a Research Engineer to lead the vision track. Began training Patram-7B-Instruct from scratch on Indian documents.</div>
+        <div class="news-text">Joined <strong>BharatGen</strong> as a Research Engineer to lead the vision track. Began training Patram-7B-Instruct from scratch on Indian documents. Scaled to 512 GPUs.</div>
       </div>
       <div class="news-item">
         <div class="news-date">Jan 2024</div>
@@ -539,27 +540,27 @@
     <div class="proj-grid">
 
       <div class="proj-card">
+        <div class="proj-name">tiny-infer</div>
+        <div class="proj-meta">C++ · CUDA · 2026 · 60-day Challenge</div>
+        <div class="proj-desc">Building a minimal but real CUDA inference engine for Llama 3.2 1B from scratch in 60 days (1 hr/day). Week 1–2: correctness (forward pass matching HF). Week 3: custom kernels (Flash Attention, fused RMSNorm/RoPE). Week 4: paged KV cache. Week 5–6: speculative decoding. Week 7–8: INT8 KV quantization. Every day moves a number; every optimization benchmarked. Target: 40 tok/s vs 5 tok/s baseline. <a href="https://github.com/venkatakesavvenna/tiny-infer" target="_blank">Repo ↗</a></div>
+        <div>
+          <span class="tag">C++</span><span class="tag">CUDA</span><span class="tag">Flash Attention</span><span class="tag">Inference</span><span class="tag">Systems</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
         <div class="proj-name">GPU Kernel Series</div>
         <div class="proj-meta">CUDA C/C++ · 2026 – Present · Ongoing</div>
-        <div class="proj-desc">9 CUDA kernels built from scratch: vector add → SGEMM progression (naive → coalesced → tiled shared-memory → 1D register-tiled), each benchmarked for warp-level memory access patterns and arithmetic intensity. Implemented naive O(N²) attention and Flash Attention forward pass, fusing score, online softmax, and output accumulation into a single kernel pass — reducing HBM complexity from O(N²) to O(N).</div>
+        <div class="proj-desc">9 CUDA kernels built from scratch: vector add → SGEMM progression (naive → coalesced → tiled shared-memory → 1D register-tiled), each benchmarked for warp-level memory access patterns and arithmetic intensity. Implemented naive O(N²) attention and Flash Attention forward pass, fusing score, online softmax, and output accumulation into a single kernel pass — reducing HBM complexity from O(N²) to O(N).  <a href="https://github.com/venkatakesavvenna/GPU_Programming" target="_blank">Repo ↗</a></div>
         <div>
           <span class="tag">CUDA</span><span class="tag">C++</span><span class="tag">SGEMM</span><span class="tag">Flash Attention</span><span class="tag">GPU Mode</span>
         </div>
       </div>
 
       <div class="proj-card">
-        <div class="proj-name">Mini-SGLang</div>
-        <div class="proj-meta">Python · 2026 · Inference Systems</div>
-        <div class="proj-desc">Re-implementing core ideas of SGLang from scratch to deeply understand LLM inference systems: request scheduling, KV-cache management, continuous batching, and serving. Building incrementally from a single-GPU generation loop toward cache-aware, scheduler-driven inference with measurable systems-level optimization.</div>
-        <div>
-          <span class="tag">Python</span><span class="tag">KV Cache</span><span class="tag">Inference</span><span class="tag">Scheduling</span>
-        </div>
-      </div>
-
-      <div class="proj-card">
         <div class="proj-name">Patram Training Framework</div>
         <div class="proj-meta">PyTorch · 2024–Present · Production</div>
-        <div class="proj-desc">Modular VLM training framework scaling to 512 GPUs with plug-and-play vision encoders, projectors, and LLMs. Used to train Patram-7B-Instruct via a custom curriculum on Indian documents spanning 23 languages. <a href="https://huggingface.co/bharatgenai/patram-7b-instruct" target="_blank">Model on HuggingFace ↗</a></div>
+        <div class="proj-desc">Modular VLM training framework scaling to 512 GPUs with plug-and-play vision encoders, projectors, and LLMs. Used to train Patram-7B-Instruct via a custom curriculum on Indian documents spanning 23 languages. Distributed training, mixed precision, gradient accumulation, checkpoint management. <a href="https://huggingface.co/bharatgenai/patram-7b-instruct" target="_blank">Model on HuggingFace ↗</a></div>
         <div>
           <span class="tag">PyTorch</span><span class="tag">Distributed</span><span class="tag">VLM</span><span class="tag">512 GPUs</span>
         </div>
