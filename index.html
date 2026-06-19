@@ -374,7 +374,7 @@
     <div class="about-grid">
       <div class="about-text">
         <p>I am a Research Engineer at <strong>BharatGen</strong>, where I co-lead the vision effort. My work sits at the intersection of <strong>vision–language models, document understanding, and ML systems</strong>.</p>
-        <p>I built <strong>Patram-7B-Instruct</strong> — a 7B VLM trained from scratch on diverse Indian documents spanning 23 languages, scaling to 512 GPUs via a modular training framework. I am the first author of <strong>M3Grounder</strong> (CVPR 2026), a pixel-level grounded document QA system, and have 2 papers accepted at ICDAR 2026 and 2 under review at ECCV 2026.</p>
+        <p>I built <strong>Patram-7B-Instruct</strong> — a 7B VLM trained from scratch on diverse Indian documents spanning 23 languages, scaling to 512 GPUs via a modular training framework. I am the first author of <strong>M3Grounder</strong> (CVPR 2026), a pixel-level grounded document QA system, and have 2 papers accepted at ICDAR 2026 and 2 papers accepted at ECCV 2026.</p>
         <p>Alongside research, I am actively learning the systems side: I am building CUDA kernels from scratch (SGEMM, Flash Attention) and implementing a minimal inference engine (tiny-infer) to deeply understand LLM inference scheduling, KV-cache management, and optimization.</p>
         <p>I completed my B.Tech in Computer Science &amp; Engineering at <strong>IIIT Hyderabad</strong> (2021–2025, 8.88 CGPA).</p>
       </div>
@@ -411,15 +411,19 @@
     <div class="news-list">
       <div class="news-item">
         <div class="news-date">Jun 2026</div>
+        <div class="news-text"><span class="badge badge-eccv">ECCV 2026</span> <strong>DocLayout-VL</strong> (foundational model for hierarchical open-set document layout segmentation) accepted.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Jun 2026</div>
+        <div class="news-text"><span class="badge badge-eccv">ECCV 2026</span> <strong>DoCoG</strong> (mask-based multi-type grounded chain-of-thought for document QA) accepted.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Jun 2026</div>
         <div class="news-text"><span class="badge badge-icdar">ICDAR 2026</span> <strong>REPLICA</strong> (agentic PDF→HTML reconstruction) and <strong>Patram-Bench</strong> (multilingual Indian doc benchmark) both accepted.</div>
       </div>
       <div class="news-item">
         <div class="news-date">Feb 2026</div>
         <div class="news-text"><span class="badge badge-cvpr">CVPR 2026</span> <strong>M3Grounder</strong> accepted — mask-based multi-span, multi-granular grounding for document QA. <a href="https://m3grounder.github.io/">Project page ↗</a></div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">2026</div>
-        <div class="news-text"><span class="badge badge-eccv">ECCV 2026</span> Two papers currently under review.</div>
       </div>
       <div class="news-item">
         <div class="news-date">2026</div>
@@ -462,12 +466,12 @@
       <div class="pub">
         <div class="pub-year">2026</div>
         <div class="pub-body">
-          <div class="pub-venue"><span class="badge badge-eccv">ECCV 2026</span> CORE A* · Under Review · 1st Author</div>
-          <div class="pub-title">Anonymous. Foundational Model for Hierarchical, Open-Set &amp; Promptable Layout Segmentation</div>
-          <div class="pub-authors">Anonymous Authors</div>
-          <div class="pub-desc">Foundation model for document layout understanding reformulated as promptable, open-set, hierarchical segmentation. Achieves 79.4 OS vs 37.2 for Gemini 3 Pro. Introduces a Hierarchical Grounding Contextualizer (HGC) that enforces parent–child–sibling consistency via tree-aware sparse attention. Trained on HOPLay-Docs-80M (2.5M pages, 80M pixel-level masks).</div>
+          <div class="pub-venue"><span class="badge badge-eccv">ECCV 2026</span> CORE A* · 1st Author</div>
+          <div class="pub-title">DocLayout-VL: Foundational Model for Hierarchical, Open-Set &amp; Promptable Layout Segmentation</div>
+          <div class="pub-authors"><span class="me">Venkata Kesav Venna</span> et al.</div>
+          <div class="pub-desc">Foundation model for document layout understanding reformulated as promptable, open-set, hierarchical segmentation. Introduces a Hierarchical Grounding Contextualizer (HGC) that enforces parent–child–sibling consistency via tree-aware sparse attention. Trained on HOPLay-Docs-80M (2.5M pages, 80M pixel-level masks, 400K open-set labels). Achieves 79.4 OS vs 37.2 for Gemini 3 Pro on HOPLay-Docs-Bench.</div>
           <div class="pub-links">
-            <a class="pub-link" href="#" target="_blank">Paper (under review)</a>
+            <a class="pub-link" href="#" target="_blank">Paper</a>
           </div>
         </div>
       </div>
@@ -476,12 +480,12 @@
       <div class="pub">
         <div class="pub-year">2026</div>
         <div class="pub-body">
-          <div class="pub-venue"><span class="badge badge-eccv">ECCV 2026</span> CORE A* · Under Review</div>
-          <div class="pub-title">Anonymous. Mask-Based Multi-Type Grounded Chain-of-Thought for Document QA</div>
+          <div class="pub-venue"><span class="badge badge-eccv">ECCV 2026</span> CORE A*</div>
+          <div class="pub-title">DoCoG: Mask-Based Multi-Type Grounded Chain-of-Thought for Document QA</div>
           <div class="pub-authors">Anonymous Authors</div>
           <div class="pub-desc">Step-wise grounded CoT architecture with a novel Grounding Interaction Module (GIM) for cross-[GND]-token consistency. DPO-based alignment with anchor loss preserves mask fidelity. Achieves 85.8 AQ and 81.9 GQfa vs 84.2 AQ and 11.4 GQfa for Gemini 3 Pro — first use of DPO in grounded DocVQA. Introduces DoCoG-QA (325K docs, 1.5M step-wise QA pairs) and DoCoG-PQA (20K preference pairs).</div>
           <div class="pub-links">
-            <a class="pub-link" href="#" target="_blank">Paper (under review)</a>
+            <a class="pub-link" href="#" target="_blank">Paper</a>
           </div>
         </div>
       </div>
@@ -611,7 +615,7 @@
           <div class="exp-body">
             <ul>
               <li>Core contributor for <strong>Patram-Core</strong>, a modular VLM training framework scaling to 512 GPUs; trained Patram-7B-Instruct via a custom curriculum on Indian documents in 23 languages. <a href="https://huggingface.co/bharatgenai/patram-7b-instruct" target="_blank">HuggingFace ↗</a></li>
-              <li>Led research on grounded document understanding: <strong>M3Grounder</strong> (CVPR 2026), <strong>REPLICA</strong> and <strong>Patram-Bench</strong> (ICDAR 2026), and two papers currently under review at ECCV 2026.</li>
+              <li>Led research on grounded document understanding: <strong>M3Grounder</strong> (CVPR 2026), <strong>DocLayout-VL</strong> and <strong>DoCoG</strong> (ECCV 2026), and <strong>REPLICA</strong> and <strong>Patram-Bench</strong> (ICDAR 2026).</li>
             </ul>
           </div>
         </div>
@@ -638,7 +642,7 @@
 <!-- ── FOOTER ── -->
 <footer>
   <div class="wrapper">
-    Venkata Kesav Venna · venkatakesavvenna@gmail.com · Updated May 2026
+    Venkata Kesav Venna · venkatakesavvenna@gmail.com · Updated June 2026
   </div>
 </footer>
 
